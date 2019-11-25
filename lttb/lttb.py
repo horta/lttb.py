@@ -1,3 +1,10 @@
+"""Downsample data using the Largest-Triangle-Three-Buckets algorithm.
+
+Reference
+---------
+Sveinn Steinarsson. 2013. Downsampling Time Series for Visual
+Representation. MSc thesis. University of Iceland.
+"""
 import numpy as np
 
 
@@ -10,6 +17,7 @@ def _areas_of_triangles(a, bs, c):
     -------
     numpy.array
         Array of areas of shape (len(bs),)
+
     """
     bs_minus_a = bs - a
     a_minus_bs = a - bs
@@ -21,11 +29,6 @@ def _areas_of_triangles(a, bs, c):
 def downsample(data, n_out):
     """Downsample ``data`` to ``n_out`` points using the LTTB algorithm.
 
-    Reference
-    ---------
-    Sveinn Steinarsson. 2013. Downsampling Time Series for Visual
-    Representation. MSc thesis. University of Iceland.
-
     Constraints
     -----------
       - ncols(data) == 2
@@ -36,6 +39,7 @@ def downsample(data, n_out):
     -------
     numpy.array
         Array of shape (n_out, 2)
+
     """
     # Validate input
     if data.shape[1] != 2:
